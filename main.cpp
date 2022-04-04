@@ -34,6 +34,8 @@ int main()
 	OptLib::UnitTests::testOptimizer::testGrid();
 	OptLib::UnitTests::testOptimizer::testOverallOptimizerWithGrid();
 	//testOptimizer::testOptimizer_();
+	OptLib::UnitTests::testOptimizer::testGoldenSection();
+	OptLib::UnitTests::testOptimizer::testOverallOptimizer_WithGoldenSection();
 
 	// reset to previous version
 

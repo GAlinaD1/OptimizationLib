@@ -31,3 +31,4 @@
 #include "OptLib/Optimizers/OneDim/Bisection.h"
 #include "OptLib/Optimizers/OverallOptimizer.h"
 #include "OptLib/Optimizers/OneDim/Grid.h"
+#include "OptLib/Optimizers/OneDim/GoldenSection.h"

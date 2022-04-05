@@ -314,20 +314,18 @@ namespace OptLib
 		return o;
 	}
 
-
 	/// <summary>
 	/// Envelope for the Point<dim>
 	/// </summary>
 	template<size_t dim>
 	struct RawPoint
 	{
-		RawPoint() = default;
+		//	RawPoint() = default;
+		//	RawPoint(Point<dim>&& _P) :P{ std::move(_P)} {};
+		//	RawPoint(const Point<dim>& _P) :P{ _P } {};
 
 		Point<dim> P;
-		RawPoint(Point<dim>&& _P) :P{ std::move(_P)} {};
-		RawPoint(const Point<dim>& _P) :P{ _P } {};
 		double operator[](int i) const { return P[i]; }
-
 		operator Point<dim>() { return P; }
 	};
 	///// elementwise addition of vector + vector
@@ -383,6 +381,7 @@ namespace OptLib
 		PointVal() = default;
 		PointVal(Point<dim>&& _P, double _Val) : RawPoint{ std::move(_P) }, Val{ _Val }{}
 		PointVal(const Point<dim>& _P, double _Val) : RawPoint{ _P }, Val{ _Val }{}
+
 		bool operator<(const PointVal& rhs)
 		{
 			return this->Val < rhs.Val;

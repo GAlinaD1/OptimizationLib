@@ -5,10 +5,18 @@
 	#include "OptLib/TestMethods/testFunction.h"
 	#include "OptLib/TestMethods/testState.h"
 	#include "OptLib/TestMethods/testOptimizer.h"
+	#include "OptLib/TestMethods/testRegression.h"
 #endif // DEBUG_LIB
+
+
+
+
+
 
 int main()
 {
+
+
 #ifdef DEBUG_LIB
 	// test Simplex
 	OptLib::UnitTests::testSimplex::testPointOperations();
@@ -31,13 +39,18 @@ int main()
 	// test optimizers
 	OptLib::UnitTests::testOptimizer::testBicection();
 	OptLib::UnitTests::testOptimizer::testOverallOptimizerWithBicection(); 
+	OptLib::UnitTests::testOptimizer::testDichotomy();
+	OptLib::UnitTests::testOptimizer::testOverallOptimizerWithDichotomy(); 
 	OptLib::UnitTests::testOptimizer::testGrid();
 	OptLib::UnitTests::testOptimizer::testOverallOptimizerWithGrid();
 	OptLib::UnitTests::testOptimizer::testGoldenSection();
 	OptLib::UnitTests::testOptimizer::testOverallOptimizer_WithGoldenSection();
 	//testOptimizer::testOptimizer_();
 
-	// reset to previous version
+	// test regression
+
+//	OptLib::UnitTests::testLikelihood::GenerateDataSet<1,2>({1.0, 0.0}, new OptLib::FuncParamInterface::LinearFunc());
+	OptLib::UnitTests::testLikelihood::testLikelihoodLinear();
 
 #endif // DEBUG_LIB
 }

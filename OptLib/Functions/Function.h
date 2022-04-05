@@ -172,6 +172,21 @@ namespace OptLib
 
 			FuncInterface::IFuncWithGrad<dim>*  f;// function to optimize
 		};
+
+		template<size_t dimX, size_t dimP>
+		class FuncWithParams : public FuncInterface::IFunc<dimX>
+		{
+		protected:
+			FuncParamInterface::IFuncParam<dimX, dimP>* f;
+			Point<dimP> ParamVals;
+		public:
+			FuncWithParams(Point<dimP>&& pVals, FuncParamInterface::IFuncParam<dimX, dimP>* f_pointer) : f{ f_pointer }, ParamVals{ std::move(pVals) } {}
+
+			double operator()(const Point<dimX>& x)  const override
+			{
+				return f->operator()(x, ParamVals);
+			}
+		};
 	} // ConcreteFuncs
 
 } // OptLib

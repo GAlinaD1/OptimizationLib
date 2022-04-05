@@ -33,6 +33,8 @@ int main()
 	OptLib::UnitTests::testOptimizer::testOverallOptimizerWithBicection(); 
 	OptLib::UnitTests::testOptimizer::testGrid();
 	OptLib::UnitTests::testOptimizer::testOverallOptimizerWithGrid();
+	OptLib::UnitTests::testOptimizer::testGoldenSection();
+	OptLib::UnitTests::testOptimizer::testOverallOptimizer_WithGoldenSection();
 	//testOptimizer::testOptimizer_();
 
 	// reset to previous version

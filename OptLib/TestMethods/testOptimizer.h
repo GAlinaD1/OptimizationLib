@@ -40,6 +40,37 @@ namespace OptLib
 				std::cout << "******OverallOptimizer With Bicection test end*******\n\n";
 			}
 
+			static void testGoldenSection()
+			{
+				std::cout << "******GoldenSection test start*****\n";
+				ConcreteOptimizer::GoldenSection Algo{ new ConcreteFunc::FunctionWithHess{}, {{{-2}, {5}}} };
+				std::cout << "Current simplex is:\n" << "  " << Algo.GuessDomain() << "\n";
+				for (int i = 0; i < 10; i++)
+				{
+					Algo.Proceed();
+					std::cout << "Current simplex is:\n" << "  " << Algo.GuessDomain() << "\n";
+				}
+				std::cout << "******GoldenSection test end*******\n\n";
+			}
+
+			static void testOverallOptimizer_WithGoldenSection()
+			{
+				std::cout << "******OverallOptimizer With GoldenSection test start*****\n";
+
+				OptimizerParams prm{ 0.001, 0.001, 101 };
+				ConcreteFunc::Function f{};
+				ConcreteOptimizer::GoldenSection Algo{ &f, {{{-2}, {5}}} };
+				Optimizer<1, FuncInterface::IFunc<1>, ConcreteState::StateSegment> opt{ &Algo, prm };
+
+				std::cout << "Optimization with GoldenSection started...\n";
+				opt.Optimize();
+				std::cout << "Optimization with GoldenSection finalized.\n";
+
+				std::cout << "Total number of iterations is s = " << opt.CurIterCount() << '\n';
+				std::cout << "Final guess is x = " << opt.CurrentGuess() << '\n';
+
+				std::cout << "******OverallOptimizer With GoldenSection test end*******\n\n";
+			}
 			/*static void testDirect1DFuncAlongGrad()
 			{
 				std::cout << "******Optimization test start*****\n";
